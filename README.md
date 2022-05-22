@@ -3,12 +3,9 @@
 
 
 * top level bullet one
-  * sub-bullet  
-  * sub-bullet 2 
+ 
 * top level bullet two  
-1. numbered point one
-   1. nested numbered point  
-2. numbered point two
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

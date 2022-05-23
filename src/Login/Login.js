@@ -1,19 +1,34 @@
 import React from 'react';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import auth from '../firebase.init';
+
 
 const Login = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
-    if(user){
+    const [
+        signInWithEmailAndPassword,
+        user1,
+        loading1,
+        error1,
+    ] = useSignInWithEmailAndPassword(auth);
+    if(user || user1){
         console.log(user)
     }else{
         console.log(error);
     }
+    if(loading||loading1){
+        return <button class="btn loading">loading</button>
+    }
+    let signError;
+    if(error||error1){
+        signError = <p className='text-red-500'>{error?.message ||error1?.message}</p>
+    }
     const onSubmit = data =>{ 
-        
         console.log(data)
+        signInWithEmailAndPassword(data.email, data.password)
     };
     return (
         <div className='flex h-screen justify-center items-centter'>
@@ -44,7 +59,7 @@ const Login = () => {
                             </label>
                            
                         </div>
-                        <div class="form-control w-full max-w-xs">
+                        <div class="form-control w-full max-w-xs ">
                             <label class="label">
                                 <span class="label-text">Password</span>
 
@@ -70,13 +85,14 @@ const Login = () => {
                         </div>
                        
 
-                   
+                   {signError}
 
                         <input class="btn w-full" type="submit" value='Login' />
                     </form>
+                    <p> New User? <Link to='/signup'className='text-green-600'>Create Account </Link></p>
             
               <div class="divider ">OR</div> 
-                    <button onClick={() => signInWithGoogle()} class="btn btn-outline">Login With Google</button>
+                    <button onClick={() => signInWithGoogle()} class="btn btn-outline p-3">Login With Google</button>
                 </div>
             </div>
    </div>

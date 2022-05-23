@@ -8,6 +8,13 @@ import Blogs from './Blogs/Blogs';
 import MyPortfolio from './MyPortfolio/MyPortfolio';
 import NotFound from './NotFound/NotFound';
 import Login from './Login/Login';
+import SignUp from './SignUp/SignUp';
+import RequireAuth from './RequireAuth/RequireAuth';
+import Dashboard from './Dashboard/Dashboard';
+import MyOrder from './Dashboard/MyOrder/MyOrder';
+import AddReview from './Dashboard/AddReview/AddReview';
+import MyProfile from './Dashboard/MyProfile/MyProfile';
+
 
 function App() {
   return (
@@ -19,9 +26,20 @@ function App() {
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='/portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
         <Route path='/login' element={<Login/>}></Route>
-        <Route path='*' element={<NotFound></NotFound>}></Route>
+        <Route path='/signup' element={<SignUp />}></Route>
         
+          <Route path='/dashboard' element={<RequireAuth>
+          <Dashboard />
+          </RequireAuth>}>
+           <Route index element={<MyOrder></MyOrder>}></Route> 
+           <Route path='addreview' element={<AddReview></AddReview>}></Route> 
+           <Route path='myprofile' element={<MyProfile></MyProfile>}></Route> 
+            </Route> 
+            
+       
+        <Route path='*' element={<NotFound></NotFound>}></Route>
      </Routes>
+    
     </div>
   );
 }

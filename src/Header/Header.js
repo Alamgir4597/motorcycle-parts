@@ -9,6 +9,7 @@ const Header = () => {
     const [user, loading, error] = useAuthState(auth);
     const logout = () => {
         signOut(auth);
+        localStorage.removeItem('accessToken')
     }
     const menuItem=<>
         <li><Link to='/'>Home</Link></li>
@@ -17,7 +18,7 @@ const Header = () => {
         <li><Link to='/portfolio'>My Portfolio</Link></li>
        
         {user && <li><Link to='/dashboard'>Dashboard</Link></li> }
-        <li> {user ? <button onClick={logout} class="btn btn-ghost">SignOut</button> : <Link to='/login'>Login</Link> } </li>
+        <li> { user ? <button onClick={logout} class="btn btn-ghost">SignOut</button> : <Link to='/login'>Login</Link> } </li>
         
         </>
     return (

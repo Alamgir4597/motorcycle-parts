@@ -14,6 +14,8 @@ import Dashboard from './Dashboard/Dashboard';
 import MyOrder from './Dashboard/MyOrder/MyOrder';
 import AddReview from './Dashboard/AddReview/AddReview';
 import MyProfile from './Dashboard/MyProfile/MyProfile';
+import Users from './Dashboard/Users/Users';
+import AddParts from './Dashboard/AddParts/AddParts';
 
 
 function App() {
@@ -22,7 +24,9 @@ function App() {
       <Header></Header>
      <Routes>
         <Route path='/' element={<Home></Home>}></Route>
-        <Route path='/purchase' element={<Purchase></Purchase>}></Route>
+        <Route path='/purchase' element={<RequireAuth>
+          <Purchase></Purchase>
+        </RequireAuth>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='/portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
         <Route path='/login' element={<Login/>}></Route>
@@ -34,6 +38,8 @@ function App() {
            <Route index element={<MyOrder></MyOrder>}></Route> 
            <Route path='addreview' element={<AddReview></AddReview>}></Route> 
            <Route path='myprofile' element={<MyProfile></MyProfile>}></Route> 
+           <Route path='users' element={<Users></Users>}></Route> 
+           <Route path='addparts' element={<AddParts></AddParts>}></Route> 
             </Route> 
             
        

@@ -1,8 +1,9 @@
 import React from 'react';
-import { useCreateUserWithEmailAndPassword, useUpdateProfile} from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile} from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../firebase.init';
+import useToken from '../Hooks/useToken';
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -12,25 +13,31 @@ const SignUp = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
+    const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    if (user ) {
-        console.log(user)
+    const [token]= useToken(user||guser)
+    if (token ) {
+        navigate('/purchase');
     } 
-    if (loading ) {
+
+    if (user||guser ) {
+        
+    } 
+    if (loading||gloading ) {
         return <button class="btn loading">loading</button>
     }
     let signError;
-    if (error ) {
-        signError = <p className='text-red-500'>{error?.message}</p>
+    if (error ||gerror) {
+        signError = <p className='text-red-500'>{ error?.message}</p>
     }
 
     const onSubmit = async data => {
-        console.log(data)
+        
       await  createUserWithEmailAndPassword( data.email, data.password);
         await updateProfile({ displayName:data.name });
-        navigate('/');
+       
     };
     
     return (
@@ -115,7 +122,8 @@ const SignUp = () => {
                         <input class="btn w-full" type="submit" value='SignUp' />
                     </form>
                     <p> Already Have an Account? <Link to='/login' className='text-green-600'>Please Login </Link></p>
-
+                    <div class="divider ">OR</div>
+                    <button onClick={() => signInWithGoogle()} class="btn btn-outline p-3">Login With Google</button>
                     
                 </div>
             </div>

@@ -17,7 +17,7 @@ const PurchaseItems = ({ purchase, setOrder}) => {
                     <p>Unit  price:{price}</p>
                 </div>
                 <div class="card-actions">
-                    <label onClick={() => setOrder(purchase)} for="my-modal-3" class="btn modal-button">open modal</label>
+                    <label onClick={() => setOrder(purchase)} for="my-modal-3" class="btn modal-button">buy now</label>
                     
                 </div>
             </div>

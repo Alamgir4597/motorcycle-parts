@@ -7,10 +7,11 @@ const Tools = () => {
     const navigate= useNavigate();
     const[parts, setParts]= useParts([])
   
-console.log(parts)
+// console.log(parts)
     const goPurchase=()=>{
         navigate('/purchase')
     }
+    const threeItem = parts.slice(0, 8)
     return (
         <div>
             <h2 className='text-5xl font-bold m-5'>Parts</h2>

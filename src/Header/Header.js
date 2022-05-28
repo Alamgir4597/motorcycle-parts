@@ -19,7 +19,8 @@ const Header = () => {
        
         {user && <li><Link to='/dashboard'>Dashboard</Link></li> }
         <li> { user ? <button onClick={logout} class="btn btn-ghost">SignOut</button> : <Link to='/login'>Login</Link> } </li>
-        
+        <li> { user && <p>{user.displayName}</p> } </li>
+        <li> {user && <p>{user.email}</p>} </li>
         </>
     return (
         <div class="navbar bg-base-100">

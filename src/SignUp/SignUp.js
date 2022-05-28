@@ -6,30 +6,31 @@ import auth from '../firebase.init';
 import useToken from '../Hooks/useToken';
 
 const SignUp = () => {
-    const navigate = useNavigate();
+    const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const { register, formState: { errors }, handleSubmit } = useForm();
+    
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
-    const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
-    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const navigate = useNavigate();
 
     const [token]= useToken(user||guser)
     if (token ) {
         navigate('/purchase');
     } 
 
-    if (user||guser ) {
+    // if (user||guser ) {
         
-    } 
-    if (loading||gloading ) {
+    // } 
+    if (loading||gloading ||updating ) {
         return <button class="btn loading">loading</button>
     }
     let signError;
-    if (error ||gerror) {
+    if (error ||gerror || updateError) {
         signError = <p className='text-red-500'>{ error?.message}</p>
     }
 

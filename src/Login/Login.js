@@ -19,12 +19,14 @@ const Login = () => {
     ] = useSignInWithEmailAndPassword(auth);
     const navigate = useNavigate();
     const location = useLocation();
-    let from = location.state?.form?.pathname || '/';
-    const [token] = useToken(user ||  user1);
-
-    if(token || user || user1){
+    let from = location.state?.form?.pathname || "/";
+    const [token] = useToken(user||user1);
+useEffect(()=>{
+    if (token) {
         navigate('/purchase');
     }
+},[token,from,navigate])
+    
   
     if(loading||loading1){
         return <button class="btn loading">loading</button>

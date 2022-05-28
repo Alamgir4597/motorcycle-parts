@@ -4,7 +4,7 @@ import OrderModal from './OrderModal/OrderModal';
 import PurchaseItems from './PurchaseItems/PurchaseItems';
 
 const Purchase = () => {
-    const[purchase] = useParts([]);
+    const[purchase , SetPurchase] = useParts([]);
     const [order, setOrder]= useState(null);
     // console.log(order);
     // console.log(purchase);
@@ -28,7 +28,7 @@ const Purchase = () => {
                     }
                 </div>
                {
-                   order && <OrderModal  order={order} ></OrderModal>
+                   order && <OrderModal setOrder={setOrder} order={order} ></OrderModal>
                }
                 
             </div>

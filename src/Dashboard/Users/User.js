@@ -11,8 +11,11 @@ method:'PUT',
 
         })
         .then(res=>res.json())
-        .then(data=>{console.log(data) 
-        toast.success('made admin')
+        .then(data=>{ 
+            if(data.modifiedCount>0){
+                toast.success('made admin')
+            }
+       
         })
     }
     

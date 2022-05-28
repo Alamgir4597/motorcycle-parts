@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const MyOrder = () => {
@@ -10,19 +10,13 @@ const navigate= useNavigate();
 
     useEffect(()=>{
         if(user){
-            fetch(`http://localhost:5000/order?email=${user.email}`,{
+            fetch(`http://localhost:5000/order?custName=${user.email}`,{
                 method:'GET',
                 headers:{
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
                 }
             })
-            .then(res=>{
-                console.log(res)
-                if(res.status===401 || res.status===403){
-navigate('/')
-                }
-                return res.json()
-            })
+            .then(res=>res.json())
             .then(data=>setMyOrder(data))
         }
     },[user])
@@ -41,6 +35,7 @@ navigate('/')
                             <th>Phone</th>
                             <th>Order Qty</th>
                             <th>Total price</th>
+                            <th>Total price</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,7 +48,10 @@ navigate('/')
                                 <td>{order.phone}</td>
                                 
                                 <td>{order.orderData}</td>
-                                <td>{order.totalPrice}</td>
+                                <td>{(order.totalPrice &&  order.paid) && <Link to={`/dashboard/payment/${order._id}`}>< button class="btn btn-secondary">Button</button></Link>}
+                                    {(order.totalPrice && order.paid) && <span className='text-success'>paid</span>}
+                                </td>
+
                             </tr>)
                        }
                         

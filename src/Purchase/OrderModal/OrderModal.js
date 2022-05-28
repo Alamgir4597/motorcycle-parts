@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 import { toast, ToastContainer } from 'react-toastify';
 
-const OrderModal = ({order}) => {
+const OrderModal = ({order,setOrder}) => {
     const[error,setError ]= useState();
    
     const { price, name,minqty,maxqty } = order;
@@ -22,16 +22,18 @@ const OrderModal = ({order}) => {
     
     const onSubmitHandle = async event => {
 event.preventDefault();
+        const partsName = event.target.partsName.value
         const custName = event.target.custName.value
+
         const totalPrice = event.target.totalPrice.value
         const email = event.target.email.value
         const phone = event.target.phone.value
         const orderData = event.target.orderqty.value
         console.log(orderData);
      
-        const allOrderData = { custName,totalPrice,email,phone,orderData};
+        const allOrderData = { partsName, custName,totalPrice,email,phone,orderData};
         console.log(allOrderData)
-
+// setOrder(null);
         fetch('http://localhost:5000/order', {
             method: 'POST',
             headers: {
@@ -66,18 +68,20 @@ event.preventDefault();
                     <p class="py-4">unit price:{price}</p>
                     
                     <form onSubmit={onSubmitHandle} >
-                        <input  type="text" name='custName'  placeholder="Type here" class="input input-bordered w-full max-w-xs" required  />
+                        <input  type="text" name='partsName'  value={name}  placeholder="Type here" class="input input-bordered w-full max-w-xs" required  />
+
+                        <input type="text" name='custName'  placeholder="enter your name" class="input input-bordered w-full max-w-xs" required />
 
                        
-
-                        <input  onChange={(e)=>setError(e.target.value)} type="number" name='orderqty'  placeholder="Type here" class="input input-bordered w-full max-w-xs" required />
-                        {errorMessage}
+                        
                         <input type="text" name='email'  placeholder="email here" class="input input-bordered w-full max-w-xs" required />
 
                         
 
                         <input type="text" name='phone' placeholder="phone Number" class="input input-bordered w-full max-w-xs" required />
 
+                        <input onChange={(e) => setError(e.target.value)} type="number" name='orderqty' placeholder="input quantity" class="input input-bordered w-full max-w-xs" required />
+                        {errorMessage}
                         <input type="number" name='totalPrice' value={totalPrice} placeholder="Type here" class="input input-bordered w-full max-w-xs" required readOnly />
                         
                         <input disabled={parseInt(error) <= parseInt(minqty) || parseInt(error) >= parseInt(maxqty)}

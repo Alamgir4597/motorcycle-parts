@@ -16,6 +16,7 @@ import AddReview from './Dashboard/AddReview/AddReview';
 import MyProfile from './Dashboard/MyProfile/MyProfile';
 import Users from './Dashboard/Users/Users';
 import AddParts from './Dashboard/AddParts/AddParts';
+import Payment from './Dashboard/Payment';
 
 
 
@@ -42,6 +43,7 @@ function App() {
            <Route path='myprofile' element={<MyProfile></MyProfile>}></Route> 
            <Route path='users' element={<Users></Users> }></Route> 
            <Route path='addparts' element={<AddParts></AddParts>}></Route> 
+           <Route path='payment/:id' element={<Payment></Payment>}></Route> 
             </Route> 
             
        

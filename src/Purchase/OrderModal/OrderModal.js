@@ -34,7 +34,7 @@ event.preventDefault();
         const orderData = event.target.orderqty.value
         console.log(orderData);
      
-        const allOrderData = {_id, partsName, custName,totalPrice,email,phone,orderData};
+        const allOrderData = { partsName, custName,totalPrice,email,phone,orderData};
         console.log(allOrderData)
 // setOrder(null);
         fetch('http://localhost:5000/order', {

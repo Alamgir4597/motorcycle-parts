@@ -1,14 +1,28 @@
 import React from 'react';
+import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
+import Loading from '../Loading/Loading';
 import useParts from '../PartsToolsHooks/PartsToolsHooks';
 
 const ManageProducts = () => {
 
-    const [parts, setParts]=useParts([]);
+        const { data: tools , isLoading, error,refetch} = useQuery('tools', () =>
+        fetch('http://localhost:5000/parts').then(res =>
+            res.json()
+        )
+    )
+    console.log(tools)
+if(isLoading){
+    return <Loading></Loading>
+}
+if(error){
+    console.log(error)
+}
+
     const handleDelete=(id)=>{
         const proceed=window.confirm('are you sure')
         if(proceed){
-            fetch(`http://localhost:5000/order/${id}`,{
+            fetch(`http://localhost:5000/parts/${id}`,{
                 method:'DELETE'
             })
             .then(res=>res.json())
@@ -17,8 +31,8 @@ const ManageProducts = () => {
                 if(data.deletedCount){
                     toast('deleted')
                 }
-                const rem=parts.filter(p=>p._id !== id)
-                setParts(rem);
+                const rem=tools.filter(p=>p._id !== id)
+                refetch(rem);
             })
         }
         
@@ -34,7 +48,7 @@ const ManageProducts = () => {
                 
                     <thead>
                         <tr>
-                            <th></th>
+                            
                             <th>Parts Name</th>
                             <th>Min Quantity</th>
                             <th>max  Quantity</th>
@@ -43,18 +57,24 @@ const ManageProducts = () => {
                         </tr>
                     </thead>
                     <tbody>
-                       {
-                            parts.map((manage , index) =>
-                                <tr key={manage._id}>
-                                    <th>{index+1}</th>
-                                    <td>{manage.name}</td>
-                                    <td>{manage.minqty}</td>
-                                    <td>{manage.maxqty}</td>
-                                    <td>{manage.price}</td>
-                                    <td><button  onClick={()=>handleDelete(manage._id)} class="btn">delete</button></td>
-                                </tr>
-                        )
-                       }
+                       
+                      {
+                          tools.map(p=>
+                            
+                              <tr >
+
+                                  <td>{p.name}</td>
+                                  <td>{p.minqty}</td>
+                                  <td>{p.maxqty}</td>
+                                  <td>{p.price}</td>
+
+                                  <td><button onClick={() => handleDelete(p._id)} class="btn">delete</button></td>
+                              </tr>
+
+                            )
+                      }      
+                               
+                       
                         
                     </tbody>
                 </table>

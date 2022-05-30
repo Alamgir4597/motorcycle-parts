@@ -4,26 +4,23 @@ import Loading from '../../Loading/Loading';
 import User from './User';
 
 const Users = () => {
-   const [users, setUsers]= useState([]);
-    // const {data: users, isLoading , error} = useQuery('users', ()=> fetch('http://localhost:5000/user').then(res=>res.json()));
-    // console.log(users);
-    // if(isLoading){
-    //     return <Loading></Loading>
-    // }
-    // if(error){
-    //     console.log(error);
-    // }
-    useEffect(() => {
-        const url =`http://localhost:5000/user`;
-        fetch(url,{
-            method:'GET',
-            headers:{
-                authorization: `Bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
-            .then(res => res.json())
-            .then(data =>setUsers(data))
-    }, [])
+   
+    const {data: users, isLoading , error,refetch} = useQuery('users', ()=> fetch('http://localhost:5000/user',{
+        method:"GET",
+        headers:{
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res=>res.json()));
+    console.log(users);
+    if(isLoading){
+        return <Loading></Loading>
+    }
+    if(error){
+        console.log(error);
+    }
+    
+           
+    
     return (
         <div>
            <h1>Users</h1>
@@ -42,7 +39,7 @@ const Users = () => {
                        
                         
                            {
-                               users.map((user, index)=><User key={user._id} index={index}  user={user}></User>)
+                               users.map((user, index)=><User key={user._id} index={index} refetch={refetch} user={user}></User>)
                            }
                         
                        
@@ -56,3 +53,6 @@ const Users = () => {
 };
 
 export default Users;
+
+
+   

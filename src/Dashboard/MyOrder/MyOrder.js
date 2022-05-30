@@ -10,7 +10,7 @@ const navigate= useNavigate();
 
     useEffect(()=>{
         if(user){
-            fetch(`http://localhost:5000/order?custName=${user.email}`,{
+            fetch(`http://localhost:5000/order?email=${user.email}`,{
                 method:'GET',
                 headers:{
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -34,8 +34,8 @@ const navigate= useNavigate();
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Order Qty</th>
-                            <th>Total price</th>
-                            <th>Total price</th>
+                            <th>price</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -48,7 +48,7 @@ const navigate= useNavigate();
                                 <td>{order.phone}</td>
                                 
                                 <td>{order.orderData}</td>
-                                <td>{(order.totalPrice &&  order.paid) && <Link to={`/dashboard/payment/${order._id}`}>< button class="btn btn-secondary">Button</button></Link>}
+                                <td>{(order.totalPrice && !order.paid) && <Link to={`/dashboard/payment/${order._id}`}>< button class="btn btn-sm btn-secondary">pay</button></Link>}
                                     {(order.totalPrice && order.paid) && <span className='text-success'>paid</span>}
                                 </td>
 

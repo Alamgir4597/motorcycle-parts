@@ -2,9 +2,12 @@
 
 
 
-* top level bullet one
+* Tailwind and daisyui
  
-* top level bullet two  
+* react hooks form 
+* react query 
+* google firebase auhtentication and 
+* MongoDb 
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

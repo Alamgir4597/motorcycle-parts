@@ -2,7 +2,7 @@ import React from 'react';
 
 const PurchaseItems = ({ purchase, setOrder}) => {
     const{name,img,minqty,maxqty,description,price}= purchase;
-    console.log(minqty.lenght);
+    
     return (
         <div class="card w-96 bg-base-100 shadow-xl">
             <figure class="px-10 pt-10">

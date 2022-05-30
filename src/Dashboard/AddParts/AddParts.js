@@ -1,8 +1,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 const AddParts = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const imgStorageKey = '93b7002607c8cd3e7ea054c7252b1db3';
     const onSubmit = async data => {
         console.log(data);
@@ -37,7 +38,7 @@ const AddParts = () => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.acknowledged === true) {
-                            alert('Product add is Success')
+                            toast('Product add is Success')
                         }
                     })
             }
@@ -45,11 +46,11 @@ const AddParts = () => {
         
 
 
-
+        reset();
        
 };
     return (
-        <div className='flex  justify-start items-centter'>
+        <div className='flex  justify-start items-center'>
             <form onSubmit={handleSubmit(onSubmit)}>
 
 

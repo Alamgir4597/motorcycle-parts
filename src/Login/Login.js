@@ -64,8 +64,8 @@ useEffect(()=>{
                                 })}
                             />
                             <label class="label">
-                                {errors.email?.type === 'required' && <span class="label-text-alt">{errors.email.message}</span>}
-                                {errors.email?.type === 'pattern' && <span class="label-text-alt">{errors.email.message}</span>}
+                                {errors.email?.type === 'required' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
+                                {errors.email?.type === 'pattern' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
                             </label>
                            
                         </div>

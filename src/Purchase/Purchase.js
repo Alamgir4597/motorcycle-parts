@@ -12,8 +12,8 @@ const Purchase = () => {
     return (
         <div>
             <h1 className='text-3xl font-bold m-5'> Purchase</h1>
-            <div className="grid grid-cols-4 gap-4 justify-center justify-items-center">
-                <div>
+            <div className="grid lg:grid-cols-4 gap-4 justify-center justify-items-center">
+              
                     {
                         purchase.map(p=>
                             <PurchaseItems
@@ -26,9 +26,9 @@ const Purchase = () => {
                             
                             )
                     }
-                </div>
+                
                {
-                   order && <OrderModal setOrder={setOrder} order={order} ></OrderModal>
+                    order && <OrderModal order={order} setOrder={setOrder}></OrderModal>
                }
                 
             </div>

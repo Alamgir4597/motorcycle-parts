@@ -2,7 +2,7 @@ import { success } from 'daisyui/src/colors';
 import React from 'react';
 import { toast } from 'react-toastify';
 
-const User = ({user,index}) => {
+const User = ({ user, index, refetch}) => {
     const { email,role}=user;
 
     const makeAdmin=()=>{
@@ -10,9 +10,14 @@ const User = ({user,index}) => {
 method:'PUT',
 
         })
-        .then(res=>res.json())
+        .then(res=>{
+            if(res.status === 403 || res.status === 401){
+                toast.error('Failed Operation')
+            }
+        })
         .then(data=>{ 
             if(data.modifiedCount>0){
+                refetch();
                 toast.success('made admin')
             }
        

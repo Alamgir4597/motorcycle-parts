@@ -11,14 +11,14 @@ const Tools = () => {
     const goPurchase=()=>{
         navigate('/purchase')
     }
-    const threeItem = parts.slice(0, 8)
+    const threeItem = parts.slice(0, 6)
     return (
         <div>
             <h2 className='text-5xl font-bold m-5'>Parts</h2>
-            <div className='flex flex-wrap items-center justify-content-center' >
+            <div className='flex flex-wrap items-center justify-content-center ' >
                {
                     parts.map(part=> 
-                       <div key={part._id} class="card w-96 bg-base-100 shadow-xl  ml-5">
+                       <div key={part._id} class="card w-64 bg-base-100 shadow-xl  ml-5">
                            <figure><img src={part.img} alt="Shoes" /></figure>
                            <div class="card-body">
                                <h2 class="card-title">

@@ -37,8 +37,8 @@ const SignUp = () => {
     const onSubmit = async data => {
         
       await  createUserWithEmailAndPassword( data.email, data.password);
-        await updateProfile({ displayName:data.name });
-       
+        await updateProfile({ displayName: data.name });
+      
     };
     
     return (
@@ -63,7 +63,7 @@ const SignUp = () => {
                                 })}
                             />
                             <label class="label">
-                                {errors.name?.type === 'required' && <span class="label-text-alt">{errors.name.message}</span>}
+                                {errors.name?.type === 'required' && <span class="label-text-alt text-red-500">{errors.name.message}</span>}
                                
                             </label>
 
@@ -87,8 +87,8 @@ const SignUp = () => {
                                 })}
                             />
                             <label class="label">
-                                {errors.email?.type === 'required' && <span class="label-text-alt">{errors.email.message}</span>}
-                                {errors.email?.type === 'pattern' && <span class="label-text-alt">{errors.email.message}</span>}
+                                {errors.email?.type === 'required' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
+                                {errors.email?.type === 'pattern' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
                             </label>
 
                         </div>
@@ -110,8 +110,8 @@ const SignUp = () => {
                                 })}
                             />
                             <label class="label">
-                                {errors.password?.type === 'required' && <span class="label-text-alt">{errors.password.message}</span>}
-                                {errors.password?.type === 'minLength' && <span class="label-text-alt">{errors.password.message}</span>}
+                                {errors.password?.type === 'required' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
+                                {errors.password?.type === 'minLength' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
                             </label>
 
 

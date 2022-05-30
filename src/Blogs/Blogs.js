@@ -73,6 +73,14 @@ const Blogs = () => {
                     4.URL state
                     </p>
                 </div>
+                <div className='m-5'>
+                    <h3 className='text-2xl'>Why you not set the state  directly in React.</h3>
+                    <hr></hr>
+                    <h2> </h2>
+
+                    <p> We can also pass a function as an argument if the initial state has to be computed. And the value returned by the function will be used as the initial state.
+                    </p>
+                </div>
             </div>
         </div>
     );

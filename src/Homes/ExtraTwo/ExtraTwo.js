@@ -4,7 +4,7 @@ const ExtraTwo = () => {
     return (
             <div className='mt-5 mb-5'>
             <h1 className='text-center text-2xl font-bold  mt-3 mb-3'>Top Parts </h1> 
-            <div class="grid grid-cols-1 grid-cols-6">
+            <div class="grid grid-cols-1 lg:grid-cols-6 gap-2  ml-3 justify-items-center">
                 <div class="card w-64 bg-base-100 shadow-xl">
                     <figure class="px-10 pt-10">
                         <img src="https://content.motosport.com/images/items/large/TWA/TWA0001/X001.jpg" alt="Shoes" class="rounded-xl" />

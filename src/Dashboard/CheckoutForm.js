@@ -11,8 +11,11 @@ const CheckoutForm = ({pay}) => {
     const [cardError, setCardError]=useState('');
     const stripe=useStripe();
     const[clientSecret,setClientSecret]= useState('')
+    const [success, setSuccess]= useState('')
+    const [transactionId, setTransactionId]= useState('')
+    const [processing, setProcessing]= useState(false)
     const elements= useElements();
-    const { price, custName,email}=pay;
+    const {_id, price, custName,email}=pay;
     useEffect(()=>{ 
         fetch('http://localhost:5000/create-payment-intent',{
             method: 'POST'
@@ -21,6 +24,8 @@ const CheckoutForm = ({pay}) => {
         .then(data=>{
             if(data?.clientSecret){
                 setClientSecret(data.clientSecret)
+
+                fetch()
             }
             
         })
@@ -68,7 +73,13 @@ const CheckoutForm = ({pay}) => {
                     },
                 },
             },
-        )
+        );
+        if(intentError){
+            setCardError(intentError.message)
+        }else{
+            setCardError('')
+            setTransactionId()
+        }
     }
     return (
         <form onSubmit={handleSubmit}>

@@ -28,7 +28,7 @@ const AddParts = () => {
                     img:img
                 }
 
-                fetch('http://localhost:5000/addpart', {
+                fetch('https://stark-fjord-84862.herokuapp.com/addpart', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

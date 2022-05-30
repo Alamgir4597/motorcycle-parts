@@ -15,7 +15,7 @@ const AddReview = () => {
       const comment=e.target.comment.value
       console.log(name,email,rating,comment);
       const reviewData = { name, email, rating, comment}
-      fetch('http://localhost:5000/review', {
+      fetch('https://stark-fjord-84862.herokuapp.com/review', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'

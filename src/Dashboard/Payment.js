@@ -13,7 +13,7 @@ import Loading from '../Loading/Loading';
 const stripePromise = loadStripe('pk_test_51L4TtJJhR8ffwOMt7DC1NLOuRly5FpxPQHDMQuVgP7MVpK0Xt88imvpNMs2RKm2M6KLnnYxfEHHNJErRTWJRJOER000N3cxV26');
 const Payment = () => {
     const { id } = useParams();
-    const url = `http://localhost:5000/order/${id}`;
+    const url = `https://stark-fjord-84862.herokuapp.com/order/${id}`;
     
     const  { data: orders, isLoading}=useQuery(['order',id],()=>fetch(url,{
         method:'GET',
@@ -26,7 +26,7 @@ const Payment = () => {
         return <Loading></Loading>
     }
     // const[payment, setPayment]= useState();
-    // const url = `http://localhost:5000/order/${id}`;
+    // const url = `https://stark-fjord-84862.herokuapp.com/order/${id}`;
     // fetch(url,{
 
     // })

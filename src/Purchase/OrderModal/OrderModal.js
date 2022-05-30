@@ -37,7 +37,7 @@ event.preventDefault();
         const allOrderData = { partsName, custName,totalPrice,email,phone,orderData};
         console.log(allOrderData)
 // setOrder(null);
-        fetch('http://localhost:5000/order', {
+        fetch('https://stark-fjord-84862.herokuapp.com/order', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

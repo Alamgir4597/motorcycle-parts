@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import Loading from '../../Loading/Loading'
 const Reviews = () => {
 
-    const { data: reviews, isLoading, error, refetch } = useQuery('reviews', () => fetch('http://localhost:5000/review', {
+    const { data: reviews, isLoading, error, refetch } = useQuery('reviews', () => fetch('https://stark-fjord-84862.herokuapp.com/review', {
         method: "GET",
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

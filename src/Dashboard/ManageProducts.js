@@ -7,7 +7,7 @@ import useParts from '../PartsToolsHooks/PartsToolsHooks';
 const ManageProducts = () => {
 
         const { data: tools , isLoading, error,refetch} = useQuery('tools', () =>
-        fetch('http://localhost:5000/parts').then(res =>
+        fetch('https://stark-fjord-84862.herokuapp.com/parts').then(res =>
             res.json()
         )
     )
@@ -22,7 +22,7 @@ if(error){
     const handleDelete=(id)=>{
         const proceed=window.confirm('are you sure')
         if(proceed){
-            fetch(`http://localhost:5000/parts/${id}`,{
+            fetch(`https://stark-fjord-84862.herokuapp.com/parts/${id}`,{
                 method:'DELETE'
             })
             .then(res=>res.json())

@@ -17,7 +17,7 @@ const CheckoutForm = ({pay}) => {
     const elements= useElements();
     const {_id, price, custName,email}=pay;
     useEffect(()=>{ 
-        fetch('http://localhost:5000/create-payment-intent',{
+        fetch('https://stark-fjord-84862.herokuapp.com/create-payment-intent',{
             method: 'POST'
         })
         .then(res=>res.json())

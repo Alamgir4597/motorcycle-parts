@@ -6,7 +6,7 @@ import Loading from '../Loading/Loading';
 
 const ManageAllOrders = () => {
 //     const { data: orders , isLoading, error} = useQuery('orders', () =>
-//         fetch('http://localhost:5000/order').then(res =>
+//         fetch('https://stark-fjord-84862.herokuapp.com/order').then(res =>
 //             res.json()
 //         )
 //     )
@@ -16,7 +16,7 @@ const ManageAllOrders = () => {
 // }
 const[orders,setOrders]=useState([]);
 useEffect(()=>{
-    fetch('http://localhost:5000/order',{
+    fetch('https://stark-fjord-84862.herokuapp.com/order',{
         // method:'GET',
         // headers: {
         //     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -29,7 +29,7 @@ useEffect(()=>{
     const handleDelete = (id) => {
         const proceed = window.confirm('are you sure')
         if (proceed) {
-            fetch(`http://localhost:5000/order/${id}`, {
+            fetch(`https://stark-fjord-84862.herokuapp.com/order/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
